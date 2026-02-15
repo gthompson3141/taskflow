@@ -2,8 +2,11 @@ from fastapi import FastAPI
 
 from app.core.config import settings
 from app.db.base import create_db_and_tables
+from app.models.user import User
+from app.api.v1 import auth
 
 app = FastAPI(title=settings.app_name)
+app.include_router(auth.router, prefix="/api/v1")
 
 
 @app.get("/")
